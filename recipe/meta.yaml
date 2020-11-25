@@ -1,4 +1,8 @@
 {% set version = "1.14.3" %}
+{% set cross = False %}
+{% if build_platform != target_platform and not build_platform.startswith('win') %}
+{% set cross = True %}
+{% endif %}
 
 package:
   name: cffi
@@ -12,13 +16,15 @@ source:
     - 0001-Link-to-dl-library.patch
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+{% if cross %}
+    - python
+    - cross-python_{{ target_platform }}
+{% endif %}
     - {{ compiler('c') }}
   host:
     - python
