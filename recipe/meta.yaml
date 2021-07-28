@@ -25,6 +25,8 @@ requirements:
     - pip
     - setuptools
     - wheel
+    # libffi has a run_exports that needs to be respected here.
+    - libffi  # [not win]
   run:
     - python
     - libffi  # [not win]
