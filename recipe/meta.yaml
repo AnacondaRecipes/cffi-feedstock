@@ -18,8 +18,8 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - patch  # [not win]
-    - m2-patch # [win]
+    - patch     # [not win]
+    - m2-patch  # [win]
   host:
     - python
     - pip
@@ -28,7 +28,7 @@ requirements:
   run:
     - python
     - libffi  # [not win]
-    - pycparser >=2.06
+    - pycparser
 
 test:
   imports:
