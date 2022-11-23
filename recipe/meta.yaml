@@ -30,7 +30,7 @@ requirements:
   run:
     - python
     # set lower bound to avoid hotfix to lower it to <3.3
-    - libffi >={{ libffi }}  # [not win]
+    - libffi >={{ libffi }},<4  # [not win]
     - pycparser
 
 test:
