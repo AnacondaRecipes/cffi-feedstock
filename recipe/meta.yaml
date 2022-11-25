@@ -12,7 +12,7 @@ source:
     - 0001-Link-to-dl-library.patch
 
 build:
-  number: 0
+  number: 2
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - $RPATH/ld64.so.1  # [s390x]
@@ -30,7 +30,7 @@ requirements:
   run:
     - python
     # set lower bound to avoid hotfix to lower it to <3.3
-    - libffi >={{ libffi }}  # [not win]
+    - libffi >=3.4,<3.5 # [not win]
     - pycparser
 
 test:
