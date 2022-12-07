@@ -10,9 +10,10 @@ source:
   patches:
     - setup-linux.patch  # [not win]
     - 0001-Link-to-dl-library.patch
+    - apple-jit.patch  # [osx]
 
 build:
-  number: 2
+  number: 3
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
     - $RPATH/ld64.so.1  # [s390x]
