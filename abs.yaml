@@ -1,2 +1,4 @@
+build_env_vars:
+  ANACONDA_ROCKET_ENABLE_PY313 : yes
+
 # to build 3.8 to 3.12 on prefect
-aggregate_branch: 3.12
