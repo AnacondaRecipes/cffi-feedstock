@@ -1,40 +1,39 @@
-{% set version = "1.17.1" %}
+{% set version = "2.0.0" %}
 
 package:
   name: cffi
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/c/cffi/cffi-{{ version }}.tar.gz
-  sha256: 1c39c6016c32bc48dd54561950ebd6836e1670f2ae46128f67cf49e789c52824
+  url: https://pypi.org/packages/source/c/cffi/cffi-{{ version }}.tar.gz
+  sha256: 44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529
   patches:
     - setup-linux.patch  # [not win]
     - 0001-Link-to-dl-library.patch
     - apple-jit.patch  # [osx]
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   missing_dso_whitelist:
     - $RPATH/ld64.so.1  # [s390x]
-  skip: true # [py<38]
+  skip: true  # [py<39]
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - patch     # [not win]
+    - patch  # [not win]
     - m2-patch  # [win]
   host:
     - python
     - pip
-    - setuptools
-    - wheel
-    - libffi {{ libffi }} # [not win]
+    - setuptools >=66.1
+    - libffi {{ libffi }}  # [not win]
   run:
     - python
     - pycparser
     # bounds set through run_exports:
-    - libffi # [not win] 
+    - libffi  # [not win]
 
 test:
   imports:
