@@ -14,7 +14,7 @@ source:
     - patches/setup-linux.patch  # [linux]
 
 build:
-  number: 0
+  number: 1
   skip: true # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
