@@ -17,6 +17,8 @@ build:
   number: 0
   skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  entry_points:
+    - cffi-gen-src = cffi._cffi_gen_src:run
 
 requirements:
   build:
